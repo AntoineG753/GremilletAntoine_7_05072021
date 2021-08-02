@@ -16,9 +16,29 @@ export const sqlDeleteAccount = () => {
 };
 
 
-export const sqlCreatePublication = (picture, comment, publication_date, userId) => {
-    return `INSERT INTO publications (picture, comment, publication_date, userId) VALUES ('${picture}', '${comment}', '${publication_date}', '${userId}')`
+export const sqlCreatePublication = (picture, comment, publication_date, user_id) => {
+    return `INSERT INTO publications (picture, comment, publication_date, user_id) VALUES ("${picture}", "${comment}", "${publication_date}", "${user_id}")`
 };
+
+
+export const sqlRealPublication = () => {
+    return `SELECT * FROM publications`
+};
+
+
+export const sqlUpdatePublication = (picture, comment, publication_date, user_id, publication_id) => {
+    return `UPDATE publications SET picture = "${picture}", comment = "${comment}", publication_date = "${publication_date}" WHERE user_id = "${user_id}" and publication_id = "${publication_id}"` // tester la sous requete
+};
+
+
+export const sqlDeletePublication = () => {
+
+};
+
+
+
+
+
 
 
 

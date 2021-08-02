@@ -15,6 +15,6 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({extended: true}));  
 
  app.use('/api/auth', userRoutes);
-//  app.use('/api/publication', publicationRoutes);
+ app.use('/api/publication', publicationRoutes);
 
  export default app;
