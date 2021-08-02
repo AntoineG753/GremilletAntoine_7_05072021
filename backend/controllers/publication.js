@@ -1,18 +1,15 @@
 import { DB } from '../connectDB.js';
 import {} from 'dotenv/config';
 import jwt from 'jsonwebtoken';
-import dateJsToSql from '../utils/date.js';
-import { sqlCreatePublication } from '../utils/scriptSQL.js';
+import { sqlCreatePublication, sqlUpdatePublication, sqlDeletePublication, sqlRealPublication } from '../utils/scriptSQL.js';
+import { Result } from 'express-validator';
 
 
 export const createPublication = (req, res, next) => {
 
-    const date = new Date();
-
     const createPublication = sqlCreatePublication(
         req.body.picture,
         req.body.comment,
-        dateJsToSql(date),
         req.body.user_id,
     );
 
@@ -31,12 +28,9 @@ export const createPublication = (req, res, next) => {
 
 export const updatePublication = (req, res, next) => {
 
-    const date = new Date();
-
     const updatePublication = sqlUpdatePublication(
         req.body.picture,
         req.body.comment,
-        dateJsToSql(date),
         req.body.user_id,
         // recuperer l'id de la publication
     );
@@ -55,6 +49,48 @@ export const updatePublication = (req, res, next) => {
 }
 
 
+export const realPublication = (req, res, next) => {
+
+    DB.query(
+        "SELECT * FROM publications",
+        (err, Result) => {
+            if (err) throw err;
+
+            for (let i = 0; i < Result.length; i++) {
+                
+                comment: Result[i].comment
+                console.log(Result[i])
+            }
+
+            res.status(201).json({
+                message: 'publication recupérée'
+             })
+        
+        
+         
+        }
+
+        )
+}
+
+export const deletePublication = (req, res, next) => {
+
+    const deletePublication = sqlDeletePublication(
+        req.body.user_id,
+        // recuperer l'id de la publication
+    );
+
+console.log(deletePublication)
+
+    DB.query(
+        deletePublication,
+        function(error) {
+            if (error) throw error;
+        }
+
+    )
+    res.status(201).json({ message: 'Publication suprimée !' })
+}
 
 
 

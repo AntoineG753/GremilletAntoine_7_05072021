@@ -1,6 +1,6 @@
 
-export const sqlSignup = (uuid, email, name, last_name, password, registration_date) => {
-    return `INSERT INTO users  (uuid, email, name, last_name, password, registration_date ) VALUES ( '${uuid}', '${email}', '${name}', '${last_name}', '${password}', '${registration_date}')`
+export const sqlSignup = (uuid, email, name, last_name, password) => {
+    return `INSERT INTO users  (uuid, email, name, last_name, password ) VALUES ( '${uuid}', '${email}', '${name}', '${last_name}', '${password}'`
 };
 
 export const sqlLogin = (email) => {
@@ -16,8 +16,8 @@ export const sqlDeleteAccount = () => {
 };
 
 
-export const sqlCreatePublication = (picture, comment, publication_date, user_id) => {
-    return `INSERT INTO publications (picture, comment, publication_date, user_id) VALUES ("${picture}", "${comment}", "${publication_date}", "${user_id}")`
+export const sqlCreatePublication = (picture, comment, user_id) => {
+    return `INSERT INTO publications (picture, comment, user_id) VALUES ("${picture}", "${comment}", "${user_id}")`
 };
 
 
@@ -27,12 +27,12 @@ export const sqlRealPublication = () => {
 
 
 export const sqlUpdatePublication = (picture, comment, publication_date, user_id, publication_id) => {
-    return `UPDATE publications SET picture = "${picture}", comment = "${comment}", publication_date = "${publication_date}" WHERE user_id = "${user_id}" and publication_id = "${publication_id}"` // tester la sous requete
+    return `UPDATE publications SET picture = "${picture}", comment = "${comment}" WHERE user_id = "${user_id}" and publication_id = "5"` // tester la sous requete
 };
 
 
-export const sqlDeletePublication = () => {
-
+export const sqlDeletePublication = (user_id, publication_id) => {
+    return `DELETE FROM publications WHERE publication_id = "1" and user_id = "${user_id}"`
 };
 
 

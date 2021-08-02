@@ -4,7 +4,6 @@ import {} from 'dotenv/config'
 import jwt from 'jsonwebtoken';
 import CryptoJS from 'crypto-js';
 import { v5 as uuidv5 } from 'uuid';
-import dateJsToSql from '../utils/date.js';
 import { sqlSignup, sqlLogin, sqlUpdateAccount, sqlDeleteAccount } from '../utils/scriptSQL.js';
 
 
@@ -12,7 +11,6 @@ export const signup = (req, res, next) => {
     const namespace = `0134cac5-c00d-4453-a633-38857d0d5258`;
     const id = `${req.body.name}${req.body.email}`;
     const uuid = uuidv5(id, namespace);
-    const date = new Date();
     bcrypt.hash(req.body.password, 10, function(err, hash) {
 
         if (err) throw err;
@@ -23,7 +21,6 @@ export const signup = (req, res, next) => {
             req.body.name,
             req.body.last_name,
             hash,
-            dateJsToSql(date)
         );
 
         console.log(signup)
@@ -53,7 +50,7 @@ export const login = (req, res, next) => {
         (err, result) => {
             if (err) throw err;
             if (!req.body.password) {
-                return res.status(401).json({ message: 'veuillez entrer un mot de pass.' })
+                return res.status(401).json({ message: 'veuillez entrer un mot de passe.' })
             }
             bcrypt.compare(req.body.password, result[0].password)
             .then(valid => {
