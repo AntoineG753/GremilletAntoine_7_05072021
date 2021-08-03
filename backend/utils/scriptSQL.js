@@ -22,7 +22,7 @@ export const sqlCreatePublication = (picture, comment, user_id) => {
 
 
 export const sqlRealPublication = () => {
-    return `SELECT * FROM publications`
+    return "SELECT * FROM publications LEFT JOIN users ON publications.user_id = users.uuid ORDER BY publication_date DESC"
 };
 
 

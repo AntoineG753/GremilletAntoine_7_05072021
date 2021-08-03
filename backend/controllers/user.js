@@ -108,7 +108,7 @@ export const updateAccount = (req, res, next) => {
 export const deleteAccount = (req, res, next) => {
 
     const deleteAccount = sqlDeleteAccount(
-        // req.locals.userId    -- pour supprimer le bon compte userID = uuid
+        // recuperation dans le local storage
     );
 
     DB.query(

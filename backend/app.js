@@ -3,7 +3,6 @@ import userRoutes from './routes/users.js';
 import publicationRoutes from './routes/publications.js';
 
 
-
 const app = express();
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

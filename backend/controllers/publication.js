@@ -51,8 +51,10 @@ export const updatePublication = (req, res, next) => {
 
 export const realPublication = (req, res, next) => {
 
+    const realPublication = sqlRealPublication();
+
     DB.query(
-        "SELECT * FROM publications",
+        realPublication,
         (err, Result) => {
             if (err) throw err;
 
@@ -61,16 +63,9 @@ export const realPublication = (req, res, next) => {
                 comment: Result[i].comment
                 console.log(Result[i])
             }
-
-            res.status(201).json({
-                message: 'publication recupérée'
-             })
-        
-        
-         
+            res.status(201).json({message: 'publication recupérée'})
         }
-
-        )
+    )
 }
 
 export const deletePublication = (req, res, next) => {
