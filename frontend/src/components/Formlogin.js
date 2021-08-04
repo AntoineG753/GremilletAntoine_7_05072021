@@ -36,7 +36,7 @@ class Formlogin extends Component {
             })
             .catch(err => {})
        
-    }
+    } 
 
     render () {
         return (
