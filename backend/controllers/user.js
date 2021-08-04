@@ -7,23 +7,26 @@ import { v5 as uuidv5 } from 'uuid';
 import { sqlSignup, sqlLogin, sqlUpdateAccount, sqlDeleteAccount } from '../utils/scriptSQL.js';
 
 
+
 export const signup = (req, res, next) => {
     const namespace = `0134cac5-c00d-4453-a633-38857d0d5258`;
     const id = `${req.body.name}${req.body.email}`;
     const uuid = uuidv5(id, namespace);
+    
     bcrypt.hash(req.body.password, 10, function(err, hash) {
 
         if (err) throw err;
-
+        
         const signup = sqlSignup (
+            
             uuid,
             CryptoJS.HmacSHA512(req.body.email, process.env.MAIL_SECRET_KEY).toString(),
             req.body.name,
             req.body.last_name,
             hash,
         );
-
         console.log(signup)
+        console.log(req.body.email),
 
         DB.query(
             signup,
@@ -39,7 +42,7 @@ export const signup = (req, res, next) => {
 };
 
 export const login = (req, res, next) => {
-
+    console.log(req)
     const login = sqlLogin(
         CryptoJS.HmacSHA512(req.body.email, process.env.MAIL_SECRET_KEY).toString()
     );
@@ -47,6 +50,7 @@ export const login = (req, res, next) => {
     DB.query(
         login,
         req.body.email,
+        
         (err, result) => {
             if (err) throw err;
             if (!req.body.password) {

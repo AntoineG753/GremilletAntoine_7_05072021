@@ -1,4 +1,4 @@
-import express, { json } from 'express';
+import express from 'express';
 import userRoutes from './routes/users.js';
 import publicationRoutes from './routes/publications.js';
 
@@ -11,7 +11,7 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use(express.urlencoded({extended: true}));  
+app.use(express.json());  
 
  app.use('/api/auth', userRoutes);
  app.use('/api/publication', publicationRoutes);

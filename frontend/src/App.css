@@ -1,1 +1,30 @@
+.titreh1_app{
+    color:rgb(233, 167, 123);
+    text-align: center;
+    margin-top: 3vw;
+}
+
+
+.divlogin {
+    background-color: rgb(227, 235, 252);
+    margin: auto;
+    margin-top: 10vw;
+
+}
+
+
+.titreh2_login {
+    text-align: center;
+    padding-top: 1.5vw;
+}
+.formgroup{
+    margin-bottom: 1vw;
+}
+
+.form_divform {
+    padding-top: 1.5vw;
+    padding-bottom: 1.5vw;
+    margin-left: 6vw;
+    margin-right: 6vw;
+}
 
