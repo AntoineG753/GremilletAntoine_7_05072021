@@ -1,9 +1,8 @@
-// import React from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-// import {createStore} from 'redux';
+import {useDispatch, useSelector} from 'react-redux';
 import axios from 'axios';
-import  store  from './redux/Redux';
 
 
 
@@ -12,10 +11,10 @@ import  store  from './redux/Redux';
 
 
  function Formlogin() {
-    // const test = useSelector(state => state.connectedReducer.connected)
+    const connected = useSelector(state => state.connectedReducer.connected)
     const { register, handleSubmit } = useForm();
     const history = useHistory();
-
+    const dispatch = useDispatch();
     
 
 
@@ -25,13 +24,14 @@ import  store  from './redux/Redux';
         
         axios.post("http://localhost:5000/api/auth/login", {"email": `${data.email}`, "password": `${data.password}`})
             .then(res => {
-                localStorage.setItem('token', res.data.token)
+                dispatch({ type: 'connected' })
+                localStorage.setItem('token', JSON.stringify(res.data.token))
                 localStorage.setItem('userId', res.data.userId)
                 localStorage.setItem('name', res.data.name)
                 localStorage.setItem('last_name', res.data.last_name)
                 localStorage.setItem('role', res.data.role)
-                store.dispatch({ type: 'connected' })
-                console.log(store.getState().connected)
+                
+                console.log(connected)
                 history.push('/home');
             })
             .catch(err =>  {"erreur handleSubmit"})
