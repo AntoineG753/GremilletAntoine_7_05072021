@@ -5,6 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 
-ReactDOM.render(<React.StrictMode> <App /> </React.StrictMode>,document.getElementById('root'));  // on dit que le app dans app.js vas s'afficher dans la class root du index.html
+ReactDOM.render(<React.StrictMode> <App /> </React.StrictMode>,document.getElementById('root')); 
  
 reportWebVitals();
