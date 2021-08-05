@@ -63,7 +63,7 @@ export const realPublication = (req, res, next) => {
                 comment: Result[i].comment
                 console.log(Result[i])
             }
-            res.status(201).json({message: 'publication recupérée'})
+            res.status(201).json({Result})
         }
     )
 }

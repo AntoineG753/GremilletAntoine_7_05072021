@@ -61,16 +61,6 @@ export const login = (req, res, next) => {
                 if (!valid) {
                     return res.status(401).json({ message: 'Mot de passe incorrect.' })
                 };
-                // const token = jwt.sign(
-                //     {userToken: result[0].uuid},
-                //     process.env.SECRET_TOKEN_KEY,
-                //     {expiresIn: '24h'},
-                // )
-                // localStorage.setItem('userId', result[0].uuid),
-                // localStorage.setItem('name', result[0].name),
-                // localStorage.setItem('last_name', result[0].last_name),
-                // localStorage.setItem('role', result[0].role),
-                // localStorage.setItem('token', token),
                 
                 res.status(200).json({
                     userId: result[0].uuid,

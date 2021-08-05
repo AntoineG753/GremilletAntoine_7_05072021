@@ -28,3 +28,11 @@
     margin-right: 6vw;
 }
 
+.titreh1_header{
+    background-color: bisque;
+}
+.header{
+    background-color: aqua;
+    /* margin-left: auto;
+    margin-right: auto; */
+}

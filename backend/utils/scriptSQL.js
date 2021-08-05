@@ -35,7 +35,9 @@ export const sqlDeletePublication = (user_id, publication_id) => {
     return `DELETE FROM publications WHERE publication_id = "1" and user_id = "${user_id}"`
 };
 
-
+export const sqlAuthToken = (uuid) => {
+    return `SELECT uuid FROM users WHERE uuid = "${uuid}"`
+};
 
 
 

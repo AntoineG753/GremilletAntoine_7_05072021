@@ -1,5 +1,6 @@
 import { Router } from 'express';
 const router = Router();
+import { auth } from '../middleware/auth.js';
 import {signup, login, updateAccount, deleteAccount} from '../controllers/user.js';
 import { check, validationResult } from 'express-validator';
 
@@ -13,7 +14,7 @@ check('prenom', 'Veuillez ne pas utiliser de chiffre ou de caractéres speciaux 
 .matches(/^[a-zA-Z]+$/)], signup);
 router.post('/login', login);
 router.put('/updateAccount', updateAccount);
-router.get('/deleteAccount', deleteAccount);
+router.get('/deleteAccount', auth, deleteAccount);
 
 
 

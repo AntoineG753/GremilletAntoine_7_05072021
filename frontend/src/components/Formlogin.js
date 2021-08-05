@@ -25,7 +25,7 @@ import axios from 'axios';
         axios.post("http://localhost:5000/api/auth/login", {"email": `${data.email}`, "password": `${data.password}`})
             .then(res => {
                 dispatch({ type: 'connected' })
-                localStorage.setItem('token', JSON.stringify(res.data.token))
+                localStorage.setItem('token', res.data.token)
                 localStorage.setItem('userId', res.data.userId)
                 localStorage.setItem('name', res.data.name)
                 localStorage.setItem('last_name', res.data.last_name)
