@@ -14,9 +14,10 @@ export const auth = (req, res, next) => {
         DB.query(sqlauthtoken,
             (err, result) => {
                 if (err) res.status(500).json({error: "erreur serveur"});
+                
                 const token = req.headers.authorization.split(' ')[1];
                 const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN_KEY, (error, decoded) => {
-                    console.log(decoded)
+                    
                     if (error) {
                         res.status(401).json({ message: error })
                     } else {

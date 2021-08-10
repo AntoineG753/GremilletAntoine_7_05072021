@@ -1,5 +1,6 @@
 import { DB } from '../connectDB.js';
 import {} from 'dotenv/config';
+import * as fs  from 'fs';
 import jwt from 'jsonwebtoken';
 import { sqlCreatePublication, sqlUpdatePublication, sqlDeletePublication, sqlRealPublication } from '../utils/scriptSQL.js';
 import { Result } from 'express-validator';
@@ -7,17 +8,33 @@ import { Result } from 'express-validator';
 
 export const createPublication = (req, res, next) => {
 
-    const createPublication = sqlCreatePublication(
-        req.body.picture,
-        req.body.comment,
-        req.body.user_id,
+    if(!req.body.comment) {
+        var comment = "";
+    } else {
+        var comment = req.body.comment;
+    }
+
+
+    if (!req.file) {
+   
+    var Publication = sqlCreatePublication(
+        
+        "",
+        comment,
+        req.body.userId,
     );
-
-        console.log(createPublication),
-
+    } else {
+    
+     var Publication = sqlCreatePublication(
+        
+        `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}`,
+        comment,
+        req.body.userId,
+    );
+    }
 
     DB.query(
-        createPublication,
+        Publication,
         function(error) {
             if (error) throw error;
         }
@@ -61,7 +78,8 @@ export const realPublication = (req, res, next) => {
             for (let i = 0; i < Result.length; i++) {
                 
                 comment: Result[i].comment
-                console.log(Result[i])
+               
+                
             }
             res.status(201).json({Result})
         }

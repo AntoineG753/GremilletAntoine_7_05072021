@@ -30,9 +30,44 @@
 
 
 .header{
-    background-color: rgb(230, 251, 251);
-   
+   border-bottom: 3px solid rgb(255, 185, 106);
 }
-.div_publications{
-    background-color: bisque;
+
+.div_aside{
+    background-color: burlywood;
+}
+.div_card_publication{
+    border:2px solid rgb(243, 219, 180);
+    border-radius: 0.6vw;
+    margin-top: 2vw;
+    margin-bottom: 1.3vw;
+}
+.div_form_createPublication{
+    background-color: rgb(251, 232, 235);
+    border-radius: 0.7vw;
+}
+.div_menu{
+    background-color: rgb(69, 89, 90);
+}
+.btn_form_publication{
+    background-color: pink;
+    border: none;
+    border-radius: 2vw;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+}
+.input_createPublication_img{
+    width: 0;
+    height: 0;
+}
+.img_publication{
+    border-radius: 0.25vw;
+    box-shadow: 0px 0px 50px 1px rgb(236, 236, 236);
+}
+.bold{
+    font-weight: bold;
+}
+.text_overflow{
+    text-overflow: ellipsis;
+    word-wrap: break-word;
 }

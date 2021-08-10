@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 
@@ -11,7 +11,7 @@ import axios from 'axios';
 
 
  function Formlogin() {
-    const connected = useSelector(state => state.connectedReducer.connected)
+    
     const { register, handleSubmit } = useForm();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ import axios from 'axios';
                 localStorage.setItem('last_name', res.data.last_name)
                 localStorage.setItem('role', res.data.role)
                 
-                console.log(connected)
+               
                 history.push('/home');
             })
             .catch(err =>  {"erreur handleSubmit"})

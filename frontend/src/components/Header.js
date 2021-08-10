@@ -7,7 +7,7 @@ class Header extends Component {
         return (
             <div>
                 <div className='div_home d-flex justify-content-center'>
-                    <header className='header col-lg-12 d-flex justify-content-center'>    
+                    <header className='header col-lg-12 d-flex justify-content-center p-2'>    
                         <img src={iconheader}  alt="logo Groupomania" className="logo_header"/>
                     </header>
                 </div>

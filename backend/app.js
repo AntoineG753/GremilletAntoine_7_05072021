@@ -3,7 +3,11 @@ import userRoutes from './routes/users.js';
 import publicationRoutes from './routes/publications.js';
 
 
+
 const app = express();
+
+
+
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -13,7 +17,9 @@ app.use((req, res, next) => {
 
 app.use(express.json());  
 
- app.use('/api/auth', userRoutes);
- app.use('/api/publication', publicationRoutes);
+  
+  app.use('/pictures', express.static('pictures'));
+  app.use('/api/auth', userRoutes);
+  app.use('/api/publication', publicationRoutes);
 
  export default app;
