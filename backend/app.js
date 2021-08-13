@@ -1,7 +1,7 @@
 import express from 'express';
 import userRoutes from './routes/users.js';
 import publicationRoutes from './routes/publications.js';
-
+import likesRoutes from './routes/likes.js';
 
 
 const app = express();
@@ -21,5 +21,6 @@ app.use(express.json());
   app.use('/pictures', express.static('pictures'));
   app.use('/api/auth', userRoutes);
   app.use('/api/publication', publicationRoutes);
+  app.use('/api/likes', likesRoutes);
 
  export default app;

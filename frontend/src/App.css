@@ -31,8 +31,15 @@
 
 .header{
    border-bottom: 3px solid rgb(255, 185, 106);
+   
 }
-
+.ul{
+    list-style-type: none;
+}
+.a_header{
+    text-decoration: none;
+    color: black;
+}
 .div_aside{
     background-color: burlywood;
 }
@@ -42,13 +49,16 @@
     margin-top: 2vw;
     margin-bottom: 1.3vw;
 }
+.photo_profile_card{
+    height: 3vw;
+    border: 2px solid blue;
+
+}
 .div_form_createPublication{
     background-color: rgb(251, 232, 235);
     border-radius: 0.7vw;
 }
-.div_menu{
-    background-color: rgb(69, 89, 90);
-}
+
 .btn_form_publication{
     background-color: pink;
     border: none;
@@ -67,7 +77,13 @@
 .bold{
     font-weight: bold;
 }
+.text_card_name{
+    font-size: 0.9vw;
+}
 .text_overflow{
     text-overflow: ellipsis;
     word-wrap: break-word;
+}
+.ul_compte{
+    font-size: 1.5vw;
 }

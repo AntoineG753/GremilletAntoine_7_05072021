@@ -8,9 +8,9 @@ import { auth } from '../middleware/auth.js';
 
 
 router.post('/createPublication', auth, multer, createPublication);
-router.post('/updatePublication', updatePublication);
+router.post('/updatePublication', auth, multer, updatePublication);
 router.get('/realPublication', auth, realPublication);
-router.delete('/deletePublication', deletePublication);
+router.post('/deletePublication', auth, deletePublication);
 
 
 

@@ -1,8 +1,9 @@
 import { Router } from 'express';
 const router = Router();
 import { auth } from '../middleware/auth.js';
-import {signup, login, updateAccount, deleteAccount} from '../controllers/user.js';
+import {signup, login, updateAccount, deleteAccount, getAccount, allAccount} from '../controllers/user.js';
 import { check, validationResult } from 'express-validator';
+import multer from '../middleware/multer-config.js';
 
 router.post('/signup',[check('email', 'Veuillez entrer une adresse email valide')
 .isEmail(),
@@ -11,10 +12,12 @@ check('password', 'Votre mot de passe doit contenir entre 8 et 15 caractéres do
 check('nom', 'Veuillez ne pas utiliser de chiffre ou de caractéres speciaux dans le nom')
 .matches(/^[a-zA-Z]+$/),
 check('prenom', 'Veuillez ne pas utiliser de chiffre ou de caractéres speciaux dans le prenom')
-.matches(/^[a-zA-Z]+$/)], signup);
+.matches(/^[a-zA-Z]+$/)], auth, multer, signup);
 router.post('/login', login);
-router.put('/updateAccount', updateAccount);
-router.get('/deleteAccount', auth, deleteAccount);
+router.get('/getAccount', auth, getAccount);
+router.get('/allAccount', auth, allAccount);
+router.put('/updateAccount', auth, multer, updateAccount);
+router.delete('/deleteAccount', auth, deleteAccount);
 
 
 

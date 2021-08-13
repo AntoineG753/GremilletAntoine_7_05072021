@@ -17,7 +17,6 @@ export default function Home() {
         })
         
             .then(res => {          
-                
                setPublications([res.data.Result]);
 
             })
@@ -31,9 +30,8 @@ export default function Home() {
         
         <div>
             <Header/>
-            {console.log(publications)}
             {publications.length !== 0 && <Publications publications={publications}/>}
-           
+           {publications.length === 0 && <p>ERREUR : AUCUNE PUBLICATION</p>}
         </div>
     )
 }

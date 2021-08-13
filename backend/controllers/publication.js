@@ -1,13 +1,12 @@
 import { DB } from '../connectDB.js';
 import {} from 'dotenv/config';
 import * as fs  from 'fs';
-import jwt from 'jsonwebtoken';
 import { sqlCreatePublication, sqlUpdatePublication, sqlDeletePublication, sqlRealPublication } from '../utils/scriptSQL.js';
 import { Result } from 'express-validator';
 
 
 export const createPublication = (req, res, next) => {
-
+console.log(req)
     if(!req.body.comment) {
         var comment = "";
     } else {
@@ -49,7 +48,7 @@ export const updatePublication = (req, res, next) => {
         req.body.picture,
         req.body.comment,
         req.body.user_id,
-        // recuperer l'id de la publication
+        
     );
 
         console.log(updatePublication),
@@ -88,19 +87,17 @@ export const realPublication = (req, res, next) => {
 
 export const deletePublication = (req, res, next) => {
 
+
     const deletePublication = sqlDeletePublication(
-        req.body.user_id,
-        // recuperer l'id de la publication
+        req.body.publication_id
     );
-
-console.log(deletePublication)
-
+        const filename = req.body.filename.split('/pictures/')[1];
+        fs.unlink(`pictures/${filename}`, (error => error));
     DB.query(
         deletePublication,
         function(error) {
             if (error) throw error;
         }
-
     )
     res.status(201).json({ message: 'Publication suprimée !' })
 }
