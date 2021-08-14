@@ -14,6 +14,12 @@ export default function Account() {
     const [dataUtilisateur, setdataUtilisateur] = useState()
     const [enregistrer, setenregistrer] = useState(false)
     const [supprimer, setsupprimer] = useState(false)
+    const [catchSignup, setcatchSignup] = useState(false)
+    const [thenSignup, setthenSignup] = useState(false)
+    const [catchUpdate, setcatchUpdate] = useState(false)
+    const [thenUpdate, setthenUpdate] = useState(false)
+    const [catchDelete, setcatchDelete] = useState(false)
+    const [thenDelete, setthenDelete] = useState(false)
 
 
 
@@ -53,10 +59,10 @@ export default function Account() {
             .catch(err => { "err" })
 
     }, []);
-    
+
 
     const onSubmit = data => {
-        
+
         const accountData = new FormData();
         accountData.append("file", data.file[0]);
         accountData.append("nom", data.nom);
@@ -66,18 +72,18 @@ export default function Account() {
         accountData.append("email", data.email);
         axios.post("http://localhost:5000/api/auth/signup", accountData, { params: { ID: localStorage.getItem('userId') }, headers: { "authorization": "Bearer " + localStorage.getItem('token'), 'Content-Type': 'multipart/form-data' } })
             .then(res => {
-
-                console.log("post reussi")
+                setcatchSignup(false);
+                setthenSignup(true);
             })
-            .catch(err => { "erreur handleSubmit" })
+            .catch(err => { setcatchSignup(true); setthenSignup(false) })
 
     };
 
     const onSubmitUpdate = data => {
-        
+
         console.log(data)
-        
-        if(enregistrer === true) {
+
+        if (enregistrer === true) {
             const accountUpdateData = new FormData();
             accountUpdateData.append("file", data.file[0]);
             accountUpdateData.append("nom", data.nom);
@@ -87,32 +93,41 @@ export default function Account() {
             accountUpdateData.append("email", data.email);
             accountUpdateData.append("uuid", data.uuid);
             axios.put("http://localhost:5000/api/auth/updateAccount", accountUpdateData, { params: { ID: localStorage.getItem('userId') }, headers: { "authorization": "Bearer " + localStorage.getItem('token'), 'Content-Type': 'multipart/form-data' } })
-            .then(res => {
-                setenregistrer(false)
-                setfalseTruee(!falseTruee)
-            })
-            .catch(err => { "erreur handleSubmit" })
+                .then(res => {
+                    reset();
+                    setupdateUtilisateurTrue(false)
+                    setenregistrer(false)
+                    setfalseTruee(!falseTruee)
+                    setthenUpdate(true)
+                    setcatchUpdate(false)
+                    setupdateUtilisateurTrue(true)
+                })
+                .catch(err => { setcatchUpdate(true); setthenUpdate(false) })
         } else if (supprimer === true) {
-            // const accountDeleteData = new FormData();
-            // accountDeleteData.append("uuid", data.uuid)
-            const accountDeleteData = data.uuid;
+            const accountDeleteData = { "uuid": data.uuid };
             console.log(accountDeleteData)
-            axios.delete("http://localhost:5000/api/auth/deleteAccount", { params: { ID: localStorage.getItem('userId'), accountDeleteData }, headers: { "authorization": "Bearer " + localStorage.getItem('token'), 'Content-Type': 'multipart/form-data' } })
-            .then(res => {
-                setsupprimer(false)
-                setfalseTruee(!falseTruee)
-            })
-            .catch(err => { "erreur handleSubmit" })
-        } else {
-            console.log('aucun des deux')
+            axios.post("http://localhost:5000/api/auth/deleteAccount", accountDeleteData, { params: { ID: localStorage.getItem('userId'), accountDeleteData }, headers: { "authorization": "Bearer " + localStorage.getItem('token') } })
+                .then(res => {
+                    reset();
+                    setupdateUtilisateurTrue(false);
+                    setsupprimer(false);
+                    setfalseTruee(!falseTruee);
+                    setthenDelete(true);
+                    setcatchDelete(false);
+                    setcatchUpdate(false);
+                    setthenUpdate(false);
+                    setupdateUtilisateurTrue(true);
+                })
+                .catch(err => { setcatchDelete(true); setthenDelete(false); setcatchUpdate(false); setthenUpdate(false) })
         }
 
     };
 
-    
-
     const utilisateurSub = e => {
-        
+        setthenUpdate(false)
+        setthenDelete(false)
+        setcatchUpdate(false)
+        setcatchDelete(false)
         setfalseTruee(true)
         e.preventDefault()
         const reqdataSelect = document.getElementById("users_select")
@@ -125,19 +140,15 @@ export default function Account() {
         reset()
         console.log(user_account)
         setdataUtilisateur(user_account[0])
-        
-        
-    }
-console.log(falseTruee)
-console.log(register)
-    console.log(dataUtilisateur)
 
-    
+
+    }
+
     return (
         <div>
             <Header />
             <div className="col-lg-12 d-flex justify-content-center mt-lg-5 mt-md-3">
-                <div className="col-lg-11 d-flex justify-content-between mt-lg-5">
+                <div className="col-lg-11 d-flex mt-lg-5">
                     <div className="col-lg-3">
                         <img src={data.avatar}></img>
                     </div>
@@ -148,23 +159,21 @@ console.log(register)
                             <li>Role : {data.role}</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-            {data.role === "admin" &&
-                <div className="d-flex col-lg-1" >
-                    <div className="col-lg-12 mt-5 pt-5">
-                        <button className="btn btn-info" onClick={() => (setnewUtilisateurTrue(true), setupdateUtilisateurTrue(false), reset(), setfalseTruee(false))}>Ajouter un utilisateur</button>
-                    </div>
+                    {data.role === "admin" &&
+                        <div className=" col-lg-2" >
+                            <div className="col-lg-12 mt-5 pt-5">
+                                <button className="btn btn-info" onClick={() => (setnewUtilisateurTrue(true), setupdateUtilisateurTrue(false), reset(), setfalseTruee(false))}>Ajouter un utilisateur</button>
+                            </div>
 
-                    <div className="col-lg-12 mt-5 pt-5">
-                        <button className="btn btn-warning" onClick={() => (setupdateUtilisateurTrue(true), setnewUtilisateurTrue(false), setfalseTrue(true))}>Modifier un utilisateur</button>
-                    </div>
-                </div>
-            }
-            {newUtilisateurTrue === true &&
+                            <div className="col-lg-12 mt-5 pt-5">
+                                <button className="btn btn-warning" onClick={() => (setupdateUtilisateurTrue(true), setnewUtilisateurTrue(false), setfalseTrue(true))}>Modifier un utilisateur</button>
+                            </div>
+                        </div>
+                    }
+                    <div>{newUtilisateurTrue === true &&
                 <div className="col-lg-12 mt-5 pt-5">
-                    <div className="col-lg-3">
-                        <p>Formulaire Creation de compte</p>
+                    <div>
+                        <p className="bold">Formulaire Creation de compte :</p>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className='formgroup'>
                                 <label htmlFor="exampleInputEmail1">Email address</label>
@@ -190,15 +199,17 @@ console.log(register)
                                 <label htmlFor="Inputfile">Role</label>
                                 <input type="file" className="form-control" id="Inputfile" autoComplete="off" placeholder="role"  name="role" {...register('file')} />
                             </div>
+                            {catchSignup === true && <p className="message_catch">Envoi du formulaire impossibles</p>}
+                            {thenSignup === true && <p className="message_then">Envoi du formulaire Réussi</p>}
                             <button className="btn btn-primary">Enregistrer</button>
                         </form>
-                        <button className="btn btn-danger" onClick={() => setnewUtilisateurTrue(false)}>Annuler</button>
+                        <button className="btn btn-danger" onClick={() => (setnewUtilisateurTrue(false),setcatchSignup(false),setthenSignup(false))}>Annuler</button>
                     </div>
                 </div>}
             {updateUtilisateurTrue === true &&
                 <div>
-                    <div className="d-flex col-lg-5 justify-content-between">
-                        <div>
+                    <div className=" col-lg-12 justify-content-between">
+                        <div className="mb-lg-3">
                             <label htmlFor="pet-select">Choisisser un utilisateur</label>
 
                             <form onSubmit={utilisateurSub}>
@@ -253,15 +264,23 @@ console.log(register)
                                         <label htmlFor="Inputfile">Avatar</label>
                                         <input type="file" className="form-control" id="Inputfile" autoComplete="off" placeholder="picture" name="file" {...register('file')}/>
                                     </div>
-                                    <button className="btn btn-primary" onClick={() => setenregistrer(true)}>Enregistrer</button>
-                                    <button className="btn btn-danger" onClick={() => setsupprimer(true)}>Supprimer</button>
+                                    {thenUpdate === true && <p className="message_then">Utilisateur modifié</p>}
+                                    {catchUpdate === true && <p className="message_catch">Utilisateur non modifé</p>}
+                                    {thenDelete === true && <p className="message_then">Utilisateur supprimé</p>}
+                                    {catchDelete === true && <p className="message_catch">Utilisateur non supprimé</p>}
+                                    <button className="btn btn-primary" onClick={() => (setenregistrer(true), setsupprimer(false))}>Enregistrer</button>
+                                    <button className="btn btn-danger" onClick={() => (setsupprimer(true), setenregistrer(false))}>Supprimer</button>
                                 </form>
                             </div>}
                             
                         </div>
                     </div>
                 </div>
-            }
+            }</div>
+                </div>
+                
+            </div>
+
         </div>
 
     )

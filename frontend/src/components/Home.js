@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
-import Header from './Header'
+import Header from './Header';
 import Publications from './home/Publications';
 
 
@@ -18,14 +18,15 @@ export default function Home() {
         
             .then(res => {          
                setPublications([res.data.Result]);
-
+                console.log(res)
+                
             })
             .catch(err =>  {""})
 
     }, []);
 
 
- 
+
     return (
         
         <div>

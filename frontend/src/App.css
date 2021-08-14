@@ -18,7 +18,7 @@
     padding-top: 1.5vw;
 }
 .formgroup{
-    margin-bottom: 1vw;
+    margin-bottom: 0.5vw;
 }
 
 .form_divform {
@@ -35,10 +35,17 @@
 }
 .ul{
     list-style-type: none;
+    
 }
 .a_header{
     text-decoration: none;
     color: black;
+    cursor: pointer;
+}
+.a_header_deconnexion{
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+    cursor: pointer;
 }
 .div_aside{
     background-color: burlywood;
@@ -86,4 +93,12 @@
 }
 .ul_compte{
     font-size: 1.5vw;
+}
+.message_catch{
+    color: red;
+    font-weight:bold;
+}
+.message_then{
+    color: green;
+    font-weight:bold;
 }

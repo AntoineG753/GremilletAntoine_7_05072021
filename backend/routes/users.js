@@ -17,7 +17,7 @@ router.post('/login', login);
 router.get('/getAccount', auth, getAccount);
 router.get('/allAccount', auth, allAccount);
 router.put('/updateAccount', auth, multer, updateAccount);
-router.delete('/deleteAccount', auth, deleteAccount);
+router.post('/deleteAccount', auth, deleteAccount);
 
 
 

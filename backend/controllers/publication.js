@@ -73,13 +73,6 @@ export const realPublication = (req, res, next) => {
         realPublication,
         (err, Result) => {
             if (err) throw err;
-
-            for (let i = 0; i < Result.length; i++) {
-                
-                comment: Result[i].comment
-               
-                
-            }
             res.status(201).json({Result})
         }
     )

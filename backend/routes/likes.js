@@ -7,7 +7,7 @@ import { auth } from '../middleware/auth.js';
 
 router.post('/createLike', auth, createLike);
 router.post('/deleteLike', auth, deleteLike);
-router.get('/getLike', auth, getLike);
+router.get('/getLike', getLike);
 
 
 export default router;

@@ -16,6 +16,7 @@ import axios from 'axios';
     const history = useHistory();
     const dispatch = useDispatch();
     const [uuidUser, setuuidUser] = useState();
+    const [ctachConnect, setcatchConnect] = useState(false)
 
 
 
@@ -36,7 +37,7 @@ import axios from 'axios';
                
                 history.push('/home');
             })
-            .catch(err =>  {"erreur handleSubmit"})
+            .catch(err =>  {setcatchConnect(true)})
        
     };
     
@@ -52,6 +53,7 @@ import axios from 'axios';
                         <input type="password" className="form-control"  id="exampleInputPassword1" autoComplete="off" placeholder="Password" name="password" {...register('password', {required:true})}/>
                     </div>
                     <button className="btn btn-primary">Connexion</button>
+                    { ctachConnect === true && <p className="message_catch">Email ou Password incorrect</p> }
                 </form>
             </div>
         )

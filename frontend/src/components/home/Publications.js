@@ -23,15 +23,7 @@ export default function Publications(props) {
     const publicationList = props.publications[0];
     const data = publicationList.map((publication_id, index) => {
         console.log(publication_id)
-        
-
-        
-        
-            // axios.get("http://localhost:5000/api/likes/getLike", { params: { publication_id: `'${publication_id.publication_id}'`}, headers: { "authorization": "Bearer " + localStorage.getItem('token') } })
-            //     .then(res => {
-                    
-            //     })
-            //     .catch(err => { "err" })
+        console.log(props.publications[0])
         
         
 
@@ -52,7 +44,7 @@ export default function Publications(props) {
             
 
         const handleLike = data => {
-            console.log(data.publication_id)
+            console.log(data)
             // const dataLike = new FormData();
             // dataLike.append('publication_id', data.publication_id)
             // dataLike.append('user_id', data.user_id)
@@ -94,9 +86,9 @@ export default function Publications(props) {
                             <button className="btn btn-danger" id={`${publication_id.user_id}`} onClick={() => handleDelete(publication_id)}>suprimer</button>
                         </div>
                     )}
-                    <div>
+                    {/* <div>
                         <a onClick={() => handleLike(publication_id)}><i className="far fa-heart"></i></a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         )
@@ -147,8 +139,7 @@ export default function Publications(props) {
                     </div>
                     {data}
                 </div>
-                <div className="col-lg-4 div_aside">
-                </div>
+                
             </div>
         </div>
     )

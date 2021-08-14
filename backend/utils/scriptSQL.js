@@ -3,6 +3,10 @@ export const sqlSignup = (uuid, email, name, last_name, password, role, avatar) 
     return `INSERT INTO users  (uuid, email, name, last_name, password, role, avatar ) VALUES ( "${uuid}", "${email}", "${name}", "${last_name}", "${password}", "${role}", "${avatar}")`
 };
 
+export const sqlCheckEmail = (email) => {
+    return `SELECT COUNT(*) AS present FROM users WHERE email = '${email}'`
+};
+
 export const sqlLogin = (email) => {
     return `SELECT * FROM users WHERE email = '${email}'`
 };
@@ -30,12 +34,12 @@ export const sqlCreatePublication = (picture, comment, user_id) => {
 
 
 export const sqlRealPublication = () => {
-    return "SELECT * FROM publications LEFT JOIN users ON publications.user_id = users.uuid ORDER BY publication_date DESC"
+    return `SELECT * FROM publications LEFT JOIN users ON publications.user_id = users.uuid ORDER BY publication_date DESC`
 };
 
 
 export const sqlUpdatePublication = (picture, comment, user_id, publication_id) => {
-    return `UPDATE publications SET picture = "${picture}", comment = "${comment}" WHERE user_id = "${user_id}" and publication_id = "5"` // tester la sous requete
+    return `UPDATE publications SET picture = "${picture}", comment = "${comment}" WHERE user_id = "${user_id}" and publication_id = "5"` 
 };
 
 
@@ -48,7 +52,7 @@ export const sqlAuthToken = (uuid) => {
 };
 
 export const sqlCreateLike = (publication_id, user_id, like_user_id) => {
-    return `INSERT INTO likes (publication_id, user_id, like_user_id) VALUES ("${publication_id}", "${user_id}", "${like_user_id}")`
+    return `INSERT INTO likes (publication_id, user_id, like_user_id) VALUES (${publication_id}, "${user_id}", "${like_user_id}")`
 };
 
 export const sqlDeleteLike = (publication_id, user_id) => {
