@@ -147,12 +147,10 @@ export default function Account() {
     return (
         <div>
             <Header />
-            <div className="col-lg-12 d-flex justify-content-center mt-lg-5 mt-md-3">
-                <div className="col-lg-11 d-flex mt-lg-5">
-                    <div className="col-lg-3">
-                        <img src={data.avatar}></img>
-                    </div>
-                    <div className="col-lg-3">
+            <div className="col-lg-12 col-md-12 col-12 d-flex justify-content-lg-center mt-lg-5 mt-md-3">
+                <div className="col-lg-11 d-lg-flex mt-lg-5 col-md-11 col-12">
+                    <div className="col-lg-4 col-md-6 col-11 d-flex justify-content-between">
+                        <img src={data.avatar} className="col-lg-7 col-md-5 col-5"></img>
                         <ul className="ul ul_compte">
                             <li>Nom : {data.last_name}</li>
                             <li>Prenom : {data.name}</li>
@@ -160,18 +158,18 @@ export default function Account() {
                         </ul>
                     </div>
                     {data.role === "admin" &&
-                        <div className=" col-lg-2" >
-                            <div className="col-lg-12 mt-5 pt-5">
+                        <div className=" col-lg-2 col-md-2 p-2" >
+                            <div className="col-lg-12 mt-lg-5 pt-lg-5">
                                 <button className="btn btn-info" onClick={() => (setnewUtilisateurTrue(true), setupdateUtilisateurTrue(false), reset(), setfalseTruee(false))}>Ajouter un utilisateur</button>
                             </div>
 
-                            <div className="col-lg-12 mt-5 pt-5">
+                            <div className="col-lg-12 mt-5 pt-lg-5">
                                 <button className="btn btn-warning" onClick={() => (setupdateUtilisateurTrue(true), setnewUtilisateurTrue(false), setfalseTrue(true))}>Modifier un utilisateur</button>
                             </div>
                         </div>
                     }
-                    <div>{newUtilisateurTrue === true &&
-                <div className="col-lg-12 mt-5 pt-5">
+                    <div className=" p-md-2">{newUtilisateurTrue === true &&
+                <div className="col-lg-12 mt-lg-5 pt-lg-5 p-2">
                     <div>
                         <p className="bold">Formulaire Creation de compte :</p>
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -207,7 +205,7 @@ export default function Account() {
                     </div>
                 </div>}
             {updateUtilisateurTrue === true &&
-                <div>
+                <div className="p-md-2 p-2">
                     <div className=" col-lg-12 justify-content-between">
                         <div className="mb-lg-3">
                             <label htmlFor="pet-select">Choisisser un utilisateur</label>
@@ -226,7 +224,7 @@ export default function Account() {
 
                             {dataUtilisateur && falseTruee === true && <div>
                                 
-                                <form id="test" onSubmit={handleSubmit(onSubmitUpdate)}>
+                                <form onSubmit={handleSubmit(onSubmitUpdate)}>
                                     
                                     <div className='formgroup'>
                                         <label htmlFor="exampleInputEmail1">Email address</label>

@@ -57,7 +57,7 @@
     margin-bottom: 1.3vw;
 }
 .photo_profile_card{
-    height: 3vw;
+    height: 4.4rem;
     border: 2px solid blue;
 
 }
@@ -85,14 +85,14 @@
     font-weight: bold;
 }
 .text_card_name{
-    font-size: 0.9vw;
+    font-size: 0.9rem;
 }
 .text_overflow{
     text-overflow: ellipsis;
     word-wrap: break-word;
 }
 .ul_compte{
-    font-size: 1.5vw;
+    font-size: 1.2rem;
 }
 .message_catch{
     color: red;
