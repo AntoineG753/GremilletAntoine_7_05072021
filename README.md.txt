@@ -1,12 +1,12 @@
-GremilletAntoine_7_05072021
+#GremilletAntoine_7_05072021
 Groupomania
 Projet 7 du parcour développeur web
 
-Pré-requis:
+#Pré-requis:
 NodeJS version 14.0 ou plus
 Mysql version 8.0 ou plus
 
-Installation:
+#Installation:
 cloner le repo.
 Ouvrir un terminal se rendre dans le dossier backend et éxécuter npm ou yarn install
 Procéder de la même manière dans le dossier frontend.
@@ -14,6 +14,6 @@ Procéder de la même manière dans le dossier frontend.
 Changer les fichiers .env.example présents dans les dossier backend et frontend,
 par .env et y insérré vos variable d'envirronement correspondantes.
 
-Démarrage:
+#Démarrage:
 Ouvrir 2 terminaux un dossier backend l'autre dossier frontend,
 éxécuter npm start dans chacun des terminaux.
