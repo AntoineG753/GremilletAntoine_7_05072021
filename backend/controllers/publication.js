@@ -6,7 +6,6 @@ import { Result } from 'express-validator';
 
 
 export const createPublication = (req, res, next) => {
-console.log(req)
     if(!req.body.comment) {
         var comment = "";
     } else {
@@ -50,8 +49,6 @@ export const updatePublication = (req, res, next) => {
         req.body.user_id,
         
     );
-
-        console.log(updatePublication),
 
 
     DB.query(

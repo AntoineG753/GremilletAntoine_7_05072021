@@ -17,7 +17,6 @@ export const signup = (req, res, next) => {
     DB.query(
 
         checkEmail,
-        console.log(checkEmail),
         (err, Result) => {
             if (err) res.status(500).json({ error: "erreur serveur" });
             if (Result[0].present) {
@@ -27,11 +26,9 @@ export const signup = (req, res, next) => {
             const namespace = `0134cac5-c00d-4453-a633-38857d0d5258`;
             const id = `${req.body.name}${req.body.email}`;
             const uuid = uuidv5(id, namespace);
-            console.log(req)
             bcrypt.hash(req.body.password, 10, function (err, hash) {
 
                 if (err) throw err;
-                console.log(req)
                 if (!req.file) {
                     var signup = sqlSignup(
 
@@ -61,8 +58,7 @@ export const signup = (req, res, next) => {
                     signup,
                     function (error) {
                         if (error) throw error;
-                    },
-                    console.log(signup)
+                    }
                 )
                 res.status(201).json({ message: 'Enregistration confirmée' })
             });
@@ -78,14 +74,13 @@ export const signup = (req, res, next) => {
 };
 
 export const login = (req, res, next) => {
-    // console.log(req)
+
     // check email already exist 
     const checkEmail = sqlCheckEmail(
         CryptoJS.HmacSHA512(req.body.email, process.env.MAIL_SECRET_KEY).toString()
     )
     DB.query(
         checkEmail,
-        console.log(checkEmail),
         (err, Result) => {
             if (err) res.status(500).json({ error: "erreur serveur" });
             if (!Result[0].present) {
@@ -173,8 +168,28 @@ export const updateAccount = (req, res, next) => {
                     }
                     )
 
-                } else {
-
+                } 
+                if(req.body.file === "undefined"){
+                    bcrypt.hash(req.body.password, 10, function (err, hash) {
+                        var updateAccount = sqlUpdateAccount(
+                            (req.body.email ? CryptoJS.HmacSHA512(req.body.email, process.env.MAIL_SECRET_KEY).toString() : Result[0].email),
+                            (req.body.nom ? req.body.nom : Result[0].name),
+                            (req.body.prenom ? req.body.prenom : Result[0].last_name),
+                            hash,
+                            Result[0].avatar,
+                            Result[0].uuid
+                        )
+                        DB.query(
+                            updateAccount,
+                            (err, Result) => {
+                                if (err) throw err;
+                                res.status(201).json({ Result })
+                            }
+                        )
+                    }
+                    )
+                }
+                else {
                     bcrypt.hash(req.body.password, 10, function (err, hash) {
                         var updateAccount = sqlUpdateAccount(
                             (req.body.email ? CryptoJS.HmacSHA512(req.body.email, process.env.MAIL_SECRET_KEY).toString() : Result[0].email),
@@ -194,11 +209,8 @@ export const updateAccount = (req, res, next) => {
                     }
                     )
                 }
-
             }
-
         )
-        console.log(getAccount)
     } else {
         var getAccount = sqlGetAccount(
             req.body.uuid,
@@ -207,7 +219,7 @@ export const updateAccount = (req, res, next) => {
             getAccount,
             (err, Result) => {
                 if (err) throw err;
-                
+
                 if (req.file && Result[0].avatar !== "http://localhost:5000/pictures/photovide.jpg") {
 
                     var updateAccount = sqlUpdateAccount(
@@ -218,10 +230,9 @@ export const updateAccount = (req, res, next) => {
                         `${req.protocol}://${req.get('host')}/pictures/${req.file.filename}`,
                         req.body.uuid
                     );
-                    
+
                     const filename = Result[0].avatar.split('/pictures/')[1];
                     fs.unlink(`pictures/${filename}`, (error => error));
-                    console.log(filename)
                     DB.query(
                         updateAccount,
                         (err, Result) => {
@@ -231,8 +242,6 @@ export const updateAccount = (req, res, next) => {
                     )
 
                 } else {
-                    console.log(Result)
-                    console.log(req.body)
                     var updateAccount = sqlUpdateAccount(
                         (req.body.email ? CryptoJS.HmacSHA512(req.body.email, process.env.MAIL_SECRET_KEY).toString() : Result[0].email),
                         (req.body.nom ? req.body.nom : Result[0].name),
@@ -249,12 +258,9 @@ export const updateAccount = (req, res, next) => {
                             res.status(201).json({ Result })
                         }
                     )
-                    console.log(updateAccount);
                 }
             }
-
         )
-        console.log(getAccount)
     }
 }
 
@@ -262,7 +268,6 @@ export const getAccount = (req, res, next) => {
     const getAccount = sqlGetAccount(
         req.query.ID
     );
-    console.log(getAccount)
     DB.query(
         getAccount,
         (err, Result) => {

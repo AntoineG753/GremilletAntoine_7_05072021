@@ -31,8 +31,7 @@ export default function Account() {
                 setfalseTrue(false)
                 setlistUtilisateur([res.data.Result])
             })
-            .catch(err => {setErrorMessage(err.response.data.message);})
-        // list des utilisateur
+            .catch(err => { setErrorMessage(err.response.data.message); })
     }
 
 
@@ -56,7 +55,7 @@ export default function Account() {
             .then(res => {
                 setdata(res.data.Result[0])
             })
-            .catch(err => {setErrorMessage(err.response.data.message);})
+            .catch(err => { setErrorMessage(err.response.data.message); })
 
     }, []);
 
@@ -184,8 +183,11 @@ export default function Account() {
                                         <input type="password" className="form-control" id="exampleInputPassword1" autoComplete="off" placeholder="Password" name="password" {...register('password', { required: true })} />
                                     </div>
                                     <div className='formgroup'>
-                                        <label htmlFor="Inputrole">Role</label>
-                                        <input type="text" className="form-control" id="Inputrole" autoComplete="off" placeholder="role" name="role" {...register('role', { required: true })} />
+                                    <label htmlFor="roleNew">Role&ensp;</label>
+                                        <select id="roleNew" {...register('role')}>
+                                            <option value="user">user</option>
+                                            <option value="admin">admin</option>
+                                        </select>
                                     </div>
                                     <div className='formgroup'>
                                         <label htmlFor="Inputfile">Role</label>

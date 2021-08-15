@@ -5,7 +5,7 @@ import { Result } from 'express-validator';
 
 
 export const createLike = (req, res, next) => {
-console.log(req)
+
     const creatLike = sqlCreateLike(
         req.body.publication_id,
         req.body.user_id,
@@ -23,7 +23,7 @@ console.log(req)
 
 
 export const deleteLike = (req, res, next) => {
-console.log(req)
+
     const deleteLike = sqlDeleteLike(
         
         )    
@@ -39,7 +39,7 @@ console.log(req)
 
 
 export const getLike = (req, res, next) => {
-    console.log(req)
+    
         const getLike = sqlDeleteLike(
             req.body.publication_id,
             )    

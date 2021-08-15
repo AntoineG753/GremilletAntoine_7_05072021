@@ -12,7 +12,6 @@ const DB = createConnection({
 
 DB.connect ((err) => {
     if (err) throw err;
-    console.log('connected !');
 });
 
 

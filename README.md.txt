@@ -17,3 +17,7 @@ par .env et y insérré vos variable d'envirronement correspondantes.
 #Démarrage:
 Ouvrir 2 terminaux un dossier backend l'autre dossier frontend,
 éxécuter npm start dans chacun des terminaux.
+
+#Connexion utilisateur admin
+email: groupomania.admin@gmail.com
+password: 753Admin951&
