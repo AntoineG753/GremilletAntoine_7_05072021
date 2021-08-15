@@ -69,7 +69,7 @@ export default function Publications(props) {
             </div>
         )
     })
-
+ 
 
     const onSubmit = data => {
         const fileData = new FormData();
