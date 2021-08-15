@@ -7,6 +7,7 @@ import Publications from './home/Publications';
 export default function Home() {
 
     const [publications, setPublications] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
 
@@ -19,7 +20,7 @@ export default function Home() {
             .then(res => {
                 setPublications([res.data.Result]);
             })
-            .catch(err => { "" })
+            .catch(err => {setErrorMessage(err.response.data.message);})
 
     }, []);
 
@@ -28,7 +29,7 @@ export default function Home() {
         <div>
             <Header />
             {publications.length !== 0 && <Publications publications={publications} />}
-            {publications.length === 0 && <p>ERREUR : AUCUNE PUBLICATION</p>}
+            {publications.length === 0 && <p>ERREUR : AUCUNE PUBLICATION | {errorMessage}</p>}
         </div>
     )
 }

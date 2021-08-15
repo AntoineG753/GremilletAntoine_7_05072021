@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 export default function Account() {
     const { register, handleSubmit, reset } = useForm();
     const [data, setdata] = useState({});
+    const [errorMessage, setErrorMessage] = useState("");
     const [newUtilisateurTrue, setnewUtilisateurTrue] = useState(false);
     const [updateUtilisateurTrue, setupdateUtilisateurTrue] = useState(false);
     const [listUtilisateur, setlistUtilisateur] = useState([null]);
@@ -30,7 +31,7 @@ export default function Account() {
                 setfalseTrue(false)
                 setlistUtilisateur([res.data.Result])
             })
-            .catch(err => { "err" })
+            .catch(err => {setErrorMessage(err.response.data.message);})
         // list des utilisateur
     }
 
@@ -55,7 +56,7 @@ export default function Account() {
             .then(res => {
                 setdata(res.data.Result[0])
             })
-            .catch(err => { "err" })
+            .catch(err => {setErrorMessage(err.response.data.message);})
 
     }, []);
 

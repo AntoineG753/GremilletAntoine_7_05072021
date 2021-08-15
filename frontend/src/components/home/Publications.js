@@ -5,6 +5,7 @@ import axios from 'axios';
 export default function Publications(props) {
     const { register, handleSubmit } = useForm();
     const [file, setFile] = useState();
+    const [errorMessage, setErrorMessage] = useState("");
     const [dataUser, setdataUser] = useState([]);
     const [catchFormPublication, setcatchFormPublication] = useState(false)
     const [catchHandlePublication, setcatchHandlePublication] = useState(false)
@@ -15,7 +16,7 @@ export default function Publications(props) {
             .then(res => {
                 setdataUser(res.data.Result[0])
             })
-            .catch(err => { "err" })
+            .catch(err => {setErrorMessage(err.response.data.message);})
     }, []);
 
     const publicationList = props.publications[0];
@@ -69,14 +70,14 @@ export default function Publications(props) {
             </div>
         )
     })
- 
+
 
     const onSubmit = data => {
         const fileData = new FormData();
         if (!data.comment && data.file.length === 0) {
             setcatchFormPublication(true)
         } else {
-            setcatchFormPublication(true)
+            setcatchFormPublication(false)
             fileData.append("file", file);
             fileData.append("userId", localStorage.getItem('userId'))
             fileData.append("comment", data.comment)
@@ -84,7 +85,7 @@ export default function Publications(props) {
                 .then(res => {
                     document.location.reload();
                 })
-                .catch(err => { "erreur handleSubmit" })
+                .catch(err => {setErrorMessage(err.response.data.message);})
         }
 
     }
