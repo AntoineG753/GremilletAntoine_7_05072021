@@ -56,10 +56,48 @@
     margin-top: 2vw;
     margin-bottom: 1.3vw;
 }
-.photo_profile_card{
-    height: 4.4rem;
-    border: 2px solid blue;
 
+@media only screen and (min-width: 319px) and (max-width: 425px) {
+    .photo_profile_card{
+        height: 50px;
+    } 
+  }
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+    .photo_profile_card{
+        height: 70px;
+    } 
+  }
+@media only screen and (min-width: 769px) {
+    .photo_profile_card{
+        height: 90px;
+    } 
+  }
+  @media only screen and (min-width: 319px) and (max-width: 425px) {
+    .img_account{
+        height:160px
+        
+    }
+  }
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+    .img_account{
+        height:150px
+    }
+  }
+@media only screen and (min-width: 769px) and (max-width: 1440px) {
+    .img_account{
+        height:300px;
+        max-width: 300px;
+    }
+  }
+@media only screen and (min-width: 1441px) {
+    .img_account{
+        height:300px;
+        max-width: 300px;
+    }
+  }
+ 
+.photo_border{
+    border: 2px solid blue;
 }
 .div_form_createPublication{
     background-color: rgb(251, 232, 235);
@@ -69,7 +107,7 @@
 .btn_form_publication{
     background-color: pink;
     border: none;
-    border-radius: 2vw;
+    border-radius: 0.5rem;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
 }
@@ -85,7 +123,7 @@
     font-weight: bold;
 }
 .text_card_name{
-    font-size: 0.9rem;
+    font-size: 0.97rem;
 }
 .text_overflow{
     text-overflow: ellipsis;

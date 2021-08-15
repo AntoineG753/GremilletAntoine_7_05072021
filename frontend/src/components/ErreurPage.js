@@ -4,7 +4,7 @@ import React, { Component } from "react";
 class ErreurPage extends Component {
 
 
-    render () {
+    render() {
         return (
             <div className='divHome'>
                 Erreur Page
