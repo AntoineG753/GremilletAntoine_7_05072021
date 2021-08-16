@@ -18,6 +18,10 @@ par .env et y insérré vos variable d'envirronement correspondantes.
 Ouvrir 2 terminaux un dossier backend l'autre dossier frontend,
 éxécuter npm start dans chacun des terminaux.
 
+#Démarrage MySql:
+une fois la base de donnée groupomania créé entrer les donnés fourni 
+dans le fichier Database afin de créer les tables
+
 #Connexion utilisateur admin
 Ouvrez postman puis insérer cela dedans comme sur le screen fourni,
 Vérifier bien que tous les paramètres sont équivalents à ceux du screen.
