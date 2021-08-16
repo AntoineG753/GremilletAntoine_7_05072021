@@ -19,5 +19,13 @@ Ouvrir 2 terminaux un dossier backend l'autre dossier frontend,
 éxécuter npm start dans chacun des terminaux.
 
 #Connexion utilisateur admin
-email: groupomania.admin@gmail.com
-password: 753Admin951&
+Ouvrez postman puis insérer cela dedans comme sur le screen fourni,
+Vérifier bien que tous les paramètres sont équivalents à ceux du screen.
+
+{
+    "email": "admin@gmail.com",
+    "nom": "Groupomania",
+    "prenom": "Hugo",
+    "password": "753Anais951",
+    "role": "admin"
+}

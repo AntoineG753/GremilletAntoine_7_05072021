@@ -12,7 +12,7 @@ check('password', 'Votre mot de passe doit contenir entre 8 et 15 caractéres do
 check('nom', 'Veuillez ne pas utiliser de chiffre ou de caractéres speciaux dans le nom')
 .matches(/^[a-zA-Z]+$/),
 check('prenom', 'Veuillez ne pas utiliser de chiffre ou de caractéres speciaux dans le prenom')
-.matches(/^[a-zA-Z]+$/)], auth, multer, signup);
+.matches(/^[a-zA-Z]+$/)], multer, signup);
 router.post('/login', login);
 router.get('/getAccount', auth, getAccount);
 router.get('/allAccount', auth, allAccount);
